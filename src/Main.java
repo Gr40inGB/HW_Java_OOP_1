@@ -59,6 +59,8 @@ public class Main {
         System.out.println(hotDrinkVM.getProduct("Tea Green",3));
         System.out.println(hotDrinkVM.getProduct("Tea Green",3,100));
         System.out.println(hotDrinkVM.getProduct("Tea Green",3,55));
+        hotDrinkVM.showStock();
+
 
     }
 }

@@ -28,8 +28,9 @@ public class VendingMachineWater implements VendingMachine {
     }
 
     public void showStock() {
+        System.out.println("Stock of №" + this.number + " drink vending machine:");
         for (Product pr : productsStock) {
-            System.out.println(pr);
+            System.out.println("\t"+ pr);
         }
     }
 
@@ -42,7 +43,7 @@ public class VendingMachineWater implements VendingMachine {
             for (int i = 0; i < productsStock.size(); i++) {
                 Product currentProduct = productsStock.get(i);
                 if (currentProduct.getName().equals(name) && currentProduct.getPrice() == price) {
-                    return currentProduct;
+                    return productsStock.remove(i);
                 }
             }
             System.out.println("Sorry :( We don't have that product for you");
@@ -57,7 +58,7 @@ public class VendingMachineWater implements VendingMachine {
             for (int i = 0; i < productsStock.size(); i++) {
                 Product currentProduct = productsStock.get(i);
                 if (currentProduct.getName().equals(name)) {
-                    return productsStock.remove(productsStock.size() - 1);
+                    return productsStock.remove(i);
                 }
             }
             System.out.println("Sorry :( We don't have that product for you");

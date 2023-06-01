@@ -71,24 +71,14 @@ public class HotDrinkVendingMashine implements VendingMachine {
         return null;
     }
 
-    public List<Product> getProductsStock() {
-        return productsStock;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
     public Product getProduct(String name, int price, int temperature) {
         if (productsStock.size() > 0) {
             for (int i = 0; i < productsStock.size(); i++) {
                 Product currentProduct = productsStock.get(i);
-                HotDrinks hd = (HotDrinks) currentProduct;
                 if (currentProduct.getName().equals(name) &&
                         currentProduct.getPrice() == price &&
-                        hd.getTemperature() == temperature) {
-                    System.out.println(currentProduct instanceof HotDrinks);
-                    return currentProduct;
+                        ((HotDrinks) currentProduct).getTemperature() == temperature) {
+                    return productsStock.remove(i);
                 }
             }
             System.out.println("Sorry :( We don't have that product for you");
@@ -98,9 +88,18 @@ public class HotDrinkVendingMashine implements VendingMachine {
         return null;
     }
 
+    public List<Product> getProductsStock() {
+        return productsStock;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
     public void showStock() {
+        System.out.println("Stock of №" + this.number + " hot drink vending machine:");
         for (Product pr : productsStock) {
-            System.out.println((HotDrinks)pr);
+            System.out.println("\t" + (HotDrinks) pr);
         }
     }
 
@@ -114,6 +113,7 @@ public class HotDrinkVendingMashine implements VendingMachine {
         productsStock.addAll(putList);
     }
 }
+
 ```
 [HotDrinks.java](src%2FHotDrinks.java)
 ```java
@@ -131,7 +131,7 @@ public class HotDrinks extends Water {
 
     @Override
     public String toString() {
-        return super.toString() + " " + ((HotDrinks) this).getTemperature() + "\u00B0";
+        return super.toString() + " " + getTemperature() + "\u00B0";
     }
 
     public int getTemperature() {
@@ -142,8 +142,8 @@ public class HotDrinks extends Water {
         this.temperature = temperature;
     }
 }
-
 ```
+
 Main
 ```java
 import java.util.ArrayList;
@@ -152,7 +152,33 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
+//        VendingMachineWater vendingMachineWater = new VendingMachineWater();
+//        Water waterBonAqua = new Water("Bon Aqua", 2);
+//        Water waterRedKey = new Water("Red Key", 3);
+//        Water justWater = new Water("Just Water", 1);
+//        List<Product> listForPut = new ArrayList<>();
+//        listForPut.add(waterRedKey);
+//        listForPut.add(waterRedKey);
+//        listForPut.add(waterRedKey);
+//        listForPut.add(justWater);
+//        listForPut.add(justWater);
+//        listForPut.add(justWater);
+//        listForPut.add(justWater);
+//        vendingMachineWater.putProductsList(listForPut);
+//        vendingMachineWater.putProduct(waterBonAqua);
+//        vendingMachineWater.putProduct(waterBonAqua);
+//        vendingMachineWater.putProduct(waterBonAqua);
+//        vendingMachineWater.showStock();
+//
+//        System.out.println(vendingMachineWater.getProduct());
+//        System.out.println(vendingMachineWater.getProductsStockSize());
+//        System.out.println(vendingMachineWater.getProduct("Bon Aqua"));
+//        System.out.println(vendingMachineWater.getProduct("Bon Aqua", 3));
+//        System.out.println(vendingMachineWater.getProduct("Bon Aqua", 2));
+//        System.out.println(vendingMachineWater.getProduct("Bon Aqua", 2));
+//        System.out.println(vendingMachineWater.getProductsStockSize());
         HotDrinkVendingMashine hotDrinkVM = new HotDrinkVendingMashine();
+
         HotDrinks coffeeLatte = new HotDrinks("Coffee Latte", 5, 50);
         HotDrinks coffeeBlack = new HotDrinks("Coffee Black", 4, 55);
         HotDrinks tea = new HotDrinks("Tea Green", 3, 55);
@@ -181,7 +207,7 @@ public class Main {
         System.out.println(hotDrinkVM.getProduct("Tea Green",3));
         System.out.println(hotDrinkVM.getProduct("Tea Green",3,100));
         System.out.println(hotDrinkVM.getProduct("Tea Green",3,55));
-
+        hotDrinkVM.showStock();
     }
 }
 ```

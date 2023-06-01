@@ -12,7 +12,7 @@ public class HotDrinks extends Water {
 
     @Override
     public String toString() {
-        return super.toString() + " " + ((HotDrinks) this).getTemperature() + "\u00B0";
+        return super.toString() + " " + getTemperature() + "\u00B0";
     }
 
     public int getTemperature() {

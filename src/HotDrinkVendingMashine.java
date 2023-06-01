@@ -55,24 +55,14 @@ public class HotDrinkVendingMashine implements VendingMachine {
         return null;
     }
 
-    public List<Product> getProductsStock() {
-        return productsStock;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
     public Product getProduct(String name, int price, int temperature) {
         if (productsStock.size() > 0) {
             for (int i = 0; i < productsStock.size(); i++) {
                 Product currentProduct = productsStock.get(i);
-                HotDrinks hd = (HotDrinks) currentProduct;
                 if (currentProduct.getName().equals(name) &&
                         currentProduct.getPrice() == price &&
-                        hd.getTemperature() == temperature) {
-                    System.out.println(currentProduct instanceof HotDrinks);
-                    return currentProduct;
+                        ((HotDrinks) currentProduct).getTemperature() == temperature) {
+                    return productsStock.remove(i);
                 }
             }
             System.out.println("Sorry :( We don't have that product for you");
@@ -82,9 +72,18 @@ public class HotDrinkVendingMashine implements VendingMachine {
         return null;
     }
 
+    public List<Product> getProductsStock() {
+        return productsStock;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
     public void showStock() {
+        System.out.println("Stock of №" + this.number + " hot drink vending machine:");
         for (Product pr : productsStock) {
-            System.out.println((HotDrinks)pr);
+            System.out.println("\t" + (HotDrinks) pr);
         }
     }
 
