@@ -1,5 +1,5 @@
 [VendingMachine.java](src%2FVendingMachine.java)
-
+.
 ```java
 import java.util.List;
 
