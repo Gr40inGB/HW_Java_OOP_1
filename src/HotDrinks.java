@@ -1,4 +1,4 @@
-public class HotDrinks extends Water {
+public class HotDrinks extends Water implements Comparable<HotDrinks>{
     private int temperature;
 
     public HotDrinks(String name, int price) {
@@ -21,5 +21,10 @@ public class HotDrinks extends Water {
 
     public void setTemperature(int temperature) {
         this.temperature = temperature;
+    }
+
+    @Override
+    public int compareTo(HotDrinks o) {
+        return Integer.compare(this.temperature,o.getTemperature());
     }
 }

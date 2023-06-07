@@ -1,6 +1,6 @@
 public abstract class Product {
     private String name;
-    private int price;
+    private double price;
 
     public Product(String name, int price) {
         this.name = name;
@@ -15,7 +15,7 @@ public abstract class Product {
         this.name = name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 

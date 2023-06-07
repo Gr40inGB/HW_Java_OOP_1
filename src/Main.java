@@ -32,14 +32,14 @@ public class Main {
         HotDrinkVendingMashine hotDrinkVM = new HotDrinkVendingMashine();
 
         HotDrinks coffeeLatte = new HotDrinks("Coffee Latte", 5, 50);
-        HotDrinks coffeeBlack = new HotDrinks("Coffee Black", 4, 55);
-        HotDrinks tea = new HotDrinks("Tea Green", 3, 55);
-        HotDrinks teaB = new HotDrinks("Tea Black", 3, 55);
+        HotDrinks coffeeBlack = new HotDrinks("Coffee Black", 4, 67);
+        HotDrinks tea = new HotDrinks("Tea Green", 3, 69);
+        HotDrinks teaB = new HotDrinks("Tea Black", 2, 80);
 
         List<Product> lsHotDrinks = new ArrayList<>();
         lsHotDrinks.add(coffeeBlack);
         lsHotDrinks.add(tea);
-        lsHotDrinks.add(tea);
+        lsHotDrinks.add(coffeeLatte);
         lsHotDrinks.add(tea);
         lsHotDrinks.add(teaB);
 
@@ -55,11 +55,29 @@ public class Main {
 
         System.out.println("-----------------------");
 
-        System.out.println(hotDrinkVM.getProduct("Tea Green"));
-        System.out.println(hotDrinkVM.getProduct("Tea Green",3));
-        System.out.println(hotDrinkVM.getProduct("Tea Green",3,100));
-        System.out.println(hotDrinkVM.getProduct("Tea Green",3,55));
+//        System.out.println(hotDrinkVM.getProduct("Tea Green"));
+//        System.out.println(hotDrinkVM.getProduct("Tea Green",3));
+//        System.out.println(hotDrinkVM.getProduct("Tea Green",3,100));
+//        System.out.println(hotDrinkVM.getProduct("Tea Green",3,55));
         hotDrinkVM.showStock();
+
+        for (Product p : hotDrinkVM){
+            System.out.println(p);
+        }
+        System.out.println("-----------------------");
+
+        hotDrinkVM.sortByTemperature();
+
+        for (Product p : hotDrinkVM){
+            System.out.println(p);
+        }        System.out.println("-----------------------");
+
+        hotDrinkVM.sortByPrice();
+
+        for (Product p : hotDrinkVM){
+            System.out.println(p);
+        }
+
 
 
     }

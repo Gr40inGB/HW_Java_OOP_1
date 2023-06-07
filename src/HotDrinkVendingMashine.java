@@ -1,12 +1,15 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
-public class HotDrinkVendingMashine implements VendingMachine {
+public class HotDrinkVendingMashine implements VendingMachine, Iterable<Product> {
 
     static private int HotDrinkVendingMachineCount;
 
     private List<Product> productsStock;
     private int number;
+    private int counter;
 
     public HotDrinkVendingMashine() {
         this.number = ++HotDrinkVendingMachineCount;
@@ -87,6 +90,16 @@ public class HotDrinkVendingMashine implements VendingMachine {
         }
     }
 
+    public void sortByTemperature() {
+        Collections.sort(productsStock, new HotDrinksComporator());
+    }
+
+
+    public void sortByPrice() {
+        Collections.sort(productsStock, new ProductComporatorByPrice());
+    }
+
+
     @Override
     public void putProduct(Product product) {
         productsStock.add(product);
@@ -96,4 +109,10 @@ public class HotDrinkVendingMashine implements VendingMachine {
     public void putProductsList(List<Product> putList) {
         productsStock.addAll(putList);
     }
+
+    @Override
+    public Iterator<Product> iterator() {
+        return new ProductVMachineIterator(productsStock);
+    }
+
 }
